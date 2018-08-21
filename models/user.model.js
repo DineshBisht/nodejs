@@ -1,6 +1,6 @@
 var mongoose    = require("mongoose");
 var userSchema  = require("./user.schema");
-var bcrypt      = require('bcrypt');
+//var bcrypt      = require('bcrypt');
 var userModel   = mongoose.model("users",userSchema);
 var q           = require('q');
 
@@ -19,11 +19,12 @@ function createUser(userData){
 
 function login(email,password){
     var deffered = q.defer();
-    userModel.findOne({"email":email},function(err,user){
+    userModel.findOne({"email":email,"password":password},function(err,user){
         if(err){
-            deffered.reject(err);
+            deffered.reject(err); 
         } else {
-            if(user){
+            deffered.resolve(user);
+            /*if(user){
                 bcrypt.compare(password, user.password, function(err, res) {
                     if(res)
                         deffered.resolve(user);
@@ -33,7 +34,7 @@ function login(email,password){
             }
             else{
                 deffered.reject("Invalid user");
-            }
+            }*/
         }
     });
     return deffered.promise;
