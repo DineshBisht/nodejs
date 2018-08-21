@@ -20,26 +20,26 @@ var categorySchema = mongoose.Schema({
 
 categorySchema.pre("save",function(next){
     var category = this;
-    var name = category.name.toLowerCase();
+    var name = category.name;
     category.slug = name.replace(" ","-");
     next();
 });
 categorySchema.pre("update",function(next){
     var category = this;
-    var name = category.name.toLowerCase();
+    var name = category.name;
     category.slug = name.replace(" ","-");
     category.updated_date = new Date();
     next();
 });
 subCategories.pre("save",function(next){
     var category = this;
-    var name = category.name.toLowerCase();
+    var name = category.name;
     category.slug = name.replace(" ","-");
     next();
 });
 subCategories.pre("update",function(next){
     var category = this;
-    var name = category.name.toLowerCase();
+    var name = category.name;
     category.slug = name.replace(" ","-");
     category.updated_date = new Date();
     next();
