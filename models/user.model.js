@@ -19,11 +19,17 @@ function createUser(userData){
 
 function login(email,password){
     var deffered = q.defer();
-    userModel.findOne({"email":email,"password":password},function(err,user){
+    userModel.findOne({"email":email},function(err,user){
         if(err){
             deffered.reject(err); 
         } else {
-            deffered.resolve(user);
+            if ( user.password == password ){
+                deffered.resolve(user);
+            }else{
+                deffered.reject("Invalid user");
+            }
+   
+            
             /*if(user){
                 bcrypt.compare(password, user.password, function(err, res) {
                     if(res)
@@ -33,7 +39,7 @@ function login(email,password){
                 });
             }
             else{
-                deffered.reject("Invalid user");
+                
             }*/
         }
     });
