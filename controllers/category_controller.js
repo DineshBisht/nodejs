@@ -33,10 +33,8 @@ exports.create = function(req,res){
     
     categoryModel.createCategory(data)
         .then(function(cat){
-            categoryModel.getCategory(data.parent)
-                         .then(function(responsedata){
-                            res.send(responsedata);
-                         });
+            res.redirect("/category");
+            
         })
         .catch(function(err){
             console.log(err);

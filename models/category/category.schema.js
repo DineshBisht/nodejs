@@ -31,19 +31,6 @@ categorySchema.pre("update",function(next){
     category.updated_date = new Date();
     next();
 });
-subCategories.pre("save",function(next){
-    var category = this;
-    var name = category.name;
-    category.slug = name.replace(" ","-");
-    next();
-});
-subCategories.pre("update",function(next){
-    var category = this;
-    var name = category.name;
-    category.slug = name.replace(" ","-");
-    category.updated_date = new Date();
-    next();
-});
 
 
 
