@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 var session   = require("express-session");
 var flash = require('connect-flash');
 var validator = require("express-validator");
-mongoose.connect('mongodb://localhost:27017/shopping_cart',function(){
+mongoose.connect('mongodb://shopping-carts:Dinesh123@ds125362.mlab.com:25362/shopping-carts',function(){
   console.log("Connected");
 });
 
